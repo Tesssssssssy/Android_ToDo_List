@@ -37,7 +37,7 @@
             android:layout_height="30dp"
             android:layout_marginLeft="30dp"
             android:background="#CFEBF8"
-            android:text="77%"
+            android:text="🌗"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp" />
