@@ -4,10 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.fragment.app.ListFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.tessssssssy.oop_todo_list.MainActivity
+import com.tessssssssy.oop_todo_list.R
 import com.tessssssssy.oop_todo_list.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -28,6 +30,8 @@ class LoginActivity : AppCompatActivity() {
 
             val email = binding.emailArea
             val pwd = binding.passwordArea
+
+            val listfragment = ListFragment()
 
             auth.signInWithEmailAndPassword(email.text.toString(), pwd.text.toString())
                 .addOnCompleteListener(this) { task ->

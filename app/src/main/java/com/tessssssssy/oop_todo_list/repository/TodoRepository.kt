@@ -2,6 +2,8 @@ package com.tessssssssy.oop_todo_list.repository
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -9,18 +11,20 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.tessssssssy.oop_todo_list.model.Todo
-
+import com.tessssssssy.oop_todo_list.utils.FirebaseRef
 
 class TodoRepository {
-    val database = Firebase.database("https://oop-todo-list-default-rtdb.asia-southeast1.firebasedatabase.app")
-    val todoRef = database.getReference("todoList")
+
+    var auth = Firebase.auth
+    val user = auth.currentUser
+    var uid = user?.uid.toString()
 
     fun observeTodo(todoList: MutableLiveData<ArrayList<Todo>>) {
 
-        todoRef.addValueEventListener(object: ValueEventListener {
+        FirebaseRef.userInfoRef.child(uid).child("ToDo_List").addValueEventListener(object: ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                Log.d("snapshot", todoRef.toString())
+                Log.d("snapshot", FirebaseRef.userInfoRef.child(uid).child("ToDo_List").toString())
                 // onDataChange시에 todoList의 value를 다시 비워줍니다.
                 todoList.value?.clear()
                 // 이 settingList에 todo들을 담아 todoList의 value로 전달하려고 합니다.
@@ -53,11 +57,12 @@ class TodoRepository {
 
     fun postTodo(todo: Todo) {
         val list = mutableListOf(todo.todo, todo.completion, todo.priority)
-        todoRef.child(todo.todo).setValue(list)
+//        todoRef.child(todo.todo).setValue(list)
+        FirebaseRef.userInfoRef.child(uid).child("ToDo_List").child(todo.todo).setValue(list)
     }
 
     fun deleteTodo(todo: Todo){
-        todoRef.child(todo.todo).removeValue().addOnSuccessListener {
+        FirebaseRef.userInfoRef.child(uid).child("ToDo_List").child(todo.todo).removeValue().addOnSuccessListener {
             Log.d("successListener", "remove success!")
         }
     }
