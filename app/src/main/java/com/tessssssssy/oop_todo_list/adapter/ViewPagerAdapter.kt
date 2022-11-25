@@ -10,6 +10,7 @@ import com.tessssssssy.oop_todo_list.fragment.ListFragment
 
 class ViewPagerAdapter(fragmentActivity: MainActivity): FragmentStateAdapter(fragmentActivity) {
 
+    lateinit var binding: FragmentListBinding
     override fun getItemCount(): Int = 3
 
     override fun createFragment(position: Int): Fragment {

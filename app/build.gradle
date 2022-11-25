@@ -43,8 +43,11 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:31.0.2')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-auth-ktx'
-    implementation 'com.google.firebase:firebase-database-ktx'
 
+    // :20.1.0 추가했습니다
+    implementation 'com.google.firebase:firebase-database-ktx:20.1.0'
+
+    implementation 'androidx.fragment:fragment-ktx:1.5.4'
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
