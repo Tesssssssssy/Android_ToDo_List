@@ -10,6 +10,8 @@ import com.tessssssssy.oop_todo_list.repository.TodoRepository
 class TodoListViewModel: ViewModel() {
     private var _todoList = MutableLiveData<ArrayList<Todo>>(arrayListOf())
     val todoList: LiveData<ArrayList<Todo>> get() = _todoList
+    private var _scr = MutableLiveData<Int>(0)
+    val scr: LiveData<Int> get() = _scr
 
     private val repository = TodoRepository()
     init{
@@ -34,6 +36,20 @@ class TodoListViewModel: ViewModel() {
             todoForUpdate.completion = newCompletion
         }
 
+    }
+
+    fun calScore(): Int {
+        var sum = 0
+        var total = 0
+        for (i in 0.._todoList.value!!.size - 1) {
+
+            sum += _todoList.value?.get(i)?.priority?.replace("\\s+".toRegex(),"")?.toInt()!! * _todoList.value?.get(i)?.completion?.replace("\\s+".toRegex(),"")?.toInt()!!
+            total += _todoList.value!!.get(i).completion?.replace("\\s+".toRegex(),"")?.toInt()!!
+        }
+
+        sum /= total
+
+        return sum
     }
 
 }
