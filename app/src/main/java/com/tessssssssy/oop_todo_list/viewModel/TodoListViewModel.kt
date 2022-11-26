@@ -31,11 +31,12 @@ class TodoListViewModel: ViewModel() {
     fun updateTodo(todo:Todo, newTodo: String, newPriority: String, newCompletion: String){
         val todoForUpdate = todoList.value?.find { it.todo == todo.todo }
         if (todoForUpdate != null) {
-            todoForUpdate.todo = newTodo
-            todoForUpdate.priority = newPriority
-            todoForUpdate.completion = newCompletion
-        }
+            todoForUpdate.todo = newTodo.trim()
+            todoForUpdate.priority = newPriority.trim()
+            todoForUpdate.completion = newCompletion.trim()
 
+            repository.postTodo(todoForUpdate)
+        }
     }
 
     fun calScore(): Int {

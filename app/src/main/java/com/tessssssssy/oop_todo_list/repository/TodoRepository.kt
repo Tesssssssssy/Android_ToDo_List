@@ -2,13 +2,10 @@ package com.tessssssssy.oop_todo_list.repository
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.tessssssssy.oop_todo_list.model.Todo
 import com.tessssssssy.oop_todo_list.utils.FirebaseRef
@@ -37,7 +34,6 @@ class TodoRepository {
 
                 // settingList에 있는 Todo들을 todoList에 추가합니다.
                 for(data in settingList){
-                    Log.d("!!", data.toString())
                     todoList.value!!.add(data)
                 }
                 val result = todoList.value
@@ -56,9 +52,9 @@ class TodoRepository {
 
 
     fun postTodo(todo: Todo) {
-        val list = mutableListOf(todo.todo, todo.completion, todo.priority)
+        val list = mutableListOf(todo.todo, todo.priority, todo.completion)
 //        todoRef.child(todo.todo).setValue(list)
-        FirebaseRef.userInfoRef.child(uid).child("ToDo_List").child(todo.todo).setValue(list)
+        FirebaseRef.userInfoRef.child(uid).child("ToDo_List").child(todo.todo.trim()).setValue(list)
     }
 
     fun deleteTodo(todo: Todo){
@@ -72,46 +68,47 @@ class TodoRepository {
     // list로 넘어오는 데이터를 toString으로 바꾼 뒤 parsing하는 함수를 만들었습니다.
     fun extractData(data: DataSnapshot): Todo {
         var todo = data.value.toString()
-
+        Log.d("todo", todo)
         var count: Int = 0
         var todoContent = String()
         var priority = String()
         var completion = String()
 
-        var stringBuilder = StringBuilder()
+        var string = String()
         for(char in todo){
             if(char == '['){
                 continue
             }
             if(char == ' '){
-                stringBuilder.append(" ")
+//                string += ""
             }
             if(char == ',' || char == ']'){
 //                           Log.d("stringBuilder", stringBuilder.toString())
                 if(count == 0){
-                    todoContent = stringBuilder.toString()
+                    todoContent = string.trim()
                     count += 1
                 }
                 else if(count == 1){
-                    priority = stringBuilder.toString()
+                    priority = string.trim()
                     count += 1
                 }
                 else {
-                    completion = stringBuilder.toString()
+                    completion = string.trim()
                 }
-                stringBuilder.delete(0, stringBuilder.length)
+                string = ""
                 continue
             }
             else{
-                stringBuilder.append(char)
+                string += char
+//                Log.d("stringBuilder", stringBuilder.toString())
                 Log.d("char", char.toString())
             }
 
         }
 
-        Log.d("todoContent", todoContent)
-        Log.d("priority", priority)
-        Log.d("completion", completion)
+        Log.d("todoContent", todoContent.trim())
+        Log.d("priority", priority.trim())
+        Log.d("completion", completion.trim())
         return (Todo(todoContent, priority, completion))
     }
 

@@ -46,9 +46,9 @@ class TodoAdapter(val todos: MutableList<Todo>, listener: onBtnClick): RecyclerV
                     .setTitle("To-Do 수정하기")
                     .setView(bindingDialog.root)
                     .setPositiveButton("작성완료", DialogInterface.OnClickListener{ dialogInterface, i ->
-                        var newTodo = bindingDialog.inputTodo.text.toString()
-                        var newPriority = bindingDialog.inputPriority.text.toString()
-                        var newCompletion = bindingDialog.inputCompletion.text.toString()
+                        var newTodo = bindingDialog.inputTodo.text.toString().trim()
+                        var newPriority = bindingDialog.inputPriority.text.toString().trim()
+                        var newCompletion = bindingDialog.inputCompletion.text.toString().trim()
                         // callback 함수를 통해 ViewModel에 연결된 update함수 수행
                         mCallback.updateTodo(todo, newTodo, newPriority, newCompletion)
                         notifyDataSetChanged() // 리스트 새로고침 *필수!!*/
