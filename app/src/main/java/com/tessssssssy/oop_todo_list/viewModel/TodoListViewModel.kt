@@ -45,7 +45,7 @@ class TodoListViewModel: ViewModel() {
         for (i in 0.._todoList.value!!.size - 1) {
 
             sum += _todoList.value?.get(i)?.priority?.replace("\\s+".toRegex(),"")?.toInt()!! * _todoList.value?.get(i)?.completion?.replace("\\s+".toRegex(),"")?.toInt()!!
-            total += _todoList.value!!.get(i).completion?.replace("\\s+".toRegex(),"")?.toInt()!!
+            total += _todoList.value!!.get(i).priority?.replace("\\s+".toRegex(),"")?.toInt()!!
         }
 
         sum /= total

@@ -7,14 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.tessssssssy.oop_todo_list.R
 import com.tessssssssy.oop_todo_list.databinding.FragmentGraphBinding
+import com.tessssssssy.oop_todo_list.utils.FirebaseRef
 import com.tessssssssy.oop_todo_list.viewModel.TodoListViewModel
 
 class GraphFragment : Fragment() {
 
     val viewModel: TodoListViewModel by activityViewModels()
     lateinit var binding: FragmentGraphBinding
+    var auth = Firebase.auth
+    val user = auth.currentUser
+    var uid = user?.uid.toString()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +43,7 @@ class GraphFragment : Fragment() {
             // 작성하기 버튼 클릭
             binding.btnCalScore.setOnClickListener{
                 binding.txtScore.text = viewModel.calScore().toString()
+                FirebaseRef.userInfoRef.child(uid).child("score").push().setValue(binding.txtScore.text.toString())
             }
 
 
