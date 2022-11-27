@@ -15,9 +15,9 @@ class ViewPagerAdapter(fragmentActivity: MainActivity): FragmentStateAdapter(fra
 
     override fun createFragment(position: Int): Fragment {
         return when(position) {
-            0 -> MyPageFragment()
-            1 -> ListFragment()
-            else -> GraphFragment()
+            0 -> ListFragment()
+            1 -> GraphFragment()
+            else -> MyPageFragment()
         }
     }
 
