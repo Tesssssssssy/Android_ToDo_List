@@ -14,8 +14,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var todoAdapter: TodoAdapter
 
 //    탭 텍스트, 아이콘 리스트 생성 및 초기화.
-    private val tabTextList = listOf("MyPage", "ToDoList", "Graph")
-    private val tabIconList = listOf(R.drawable.profile_icon, R.drawable.list_icon, R.drawable.graph_icon)
+    private val tabTextList = listOf("ToDo-List", "Graph", "My Page")
+    private val tabIconList = listOf(R.drawable.list_icon, R.drawable.graph_icon, R.drawable.profile_icon)
 
     override fun onCreate(savedInstanceState: Bundle?) {
 

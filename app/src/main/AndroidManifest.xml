@@ -47,9 +47,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ListActivity"
-            android:exported="true" />
-        <activity
             android:name=".MainActivity"
             android:exported="true" />
 

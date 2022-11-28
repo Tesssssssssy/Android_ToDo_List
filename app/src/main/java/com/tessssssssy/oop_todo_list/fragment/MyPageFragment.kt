@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -15,12 +17,16 @@ import com.tessssssssy.oop_todo_list.R
 import com.tessssssssy.oop_todo_list.auth.IntroActivity
 import com.tessssssssy.oop_todo_list.databinding.FragmentMyPageBinding
 import com.tessssssssy.oop_todo_list.utils.FirebaseAuthUtils
+import com.tessssssssy.oop_todo_list.viewModel.MyinfoViewModel
+import com.tessssssssy.oop_todo_list.viewModel.TodoListViewModel
 import kotlinx.android.synthetic.main.fragment_my_page.*
 
 
 class MyPageFragment : Fragment() {
 
     private val TAG = "MyPageFragment"
+
+    val viewModel: MyinfoViewModel by activityViewModels()
     lateinit var binding: FragmentMyPageBinding
 
     private lateinit var auth: FirebaseAuth
@@ -44,13 +50,24 @@ class MyPageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentMyPageBinding.inflate(inflater, container, false)
+        binding = FragmentMyPageBinding.inflate(inflater)
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+
+        viewModel.nickname.observe(viewLifecycleOwner) {
+            binding?.nameArea?.text = viewModel.nickname.value
+        }
+        viewModel.email.observe(viewLifecycleOwner) {
+            binding?.emailArea?.text = viewModel.email.value
+        }
+
+
 
         auth = Firebase.auth
 
