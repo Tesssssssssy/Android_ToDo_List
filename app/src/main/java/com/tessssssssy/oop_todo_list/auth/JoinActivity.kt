@@ -58,6 +58,7 @@ class JoinActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "createUserWithEmail:success")
+                        Toast.makeText(this, "회원가입 성공!", Toast.LENGTH_SHORT).show()
 
                         val user = auth.currentUser
 //                        유저의 uid값 저장.
@@ -79,6 +80,7 @@ class JoinActivity : AppCompatActivity() {
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                        Toast.makeText(this, "회원가입 실패", Toast.LENGTH_SHORT).show()
 
                     }
                 }

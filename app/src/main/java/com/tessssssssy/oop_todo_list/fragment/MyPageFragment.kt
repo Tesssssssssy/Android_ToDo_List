@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.google.firebase.auth.FirebaseAuth
@@ -19,8 +20,6 @@ import com.tessssssssy.oop_todo_list.databinding.FragmentMyPageBinding
 import com.tessssssssy.oop_todo_list.utils.FirebaseAuthUtils
 import com.tessssssssy.oop_todo_list.viewModel.MyinfoViewModel
 import com.tessssssssy.oop_todo_list.viewModel.TodoListViewModel
-import kotlinx.android.synthetic.main.fragment_my_page.*
-
 
 class MyPageFragment : Fragment() {
 
@@ -72,9 +71,10 @@ class MyPageFragment : Fragment() {
         auth = Firebase.auth
 
         val setting = binding.logoutBtn
-        logout_btn.setOnClickListener {
+        setting.setOnClickListener {
 
             auth.signOut()
+            Toast.makeText(this, "로그아웃 성공!", Toast.LENGTH_SHORT).show()
 
             activity?.let {
                 val intent = Intent(context, IntroActivity::class.java)
