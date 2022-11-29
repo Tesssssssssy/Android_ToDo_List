@@ -19,8 +19,6 @@ import com.tessssssssy.oop_todo_list.databinding.FragmentMyPageBinding
 import com.tessssssssy.oop_todo_list.utils.FirebaseAuthUtils
 import com.tessssssssy.oop_todo_list.viewModel.MyinfoViewModel
 import com.tessssssssy.oop_todo_list.viewModel.TodoListViewModel
-import kotlinx.android.synthetic.main.fragment_my_page.*
-
 
 class MyPageFragment : Fragment() {
 
@@ -72,7 +70,7 @@ class MyPageFragment : Fragment() {
         auth = Firebase.auth
 
         val setting = binding.logoutBtn
-        logout_btn.setOnClickListener {
+        setting.setOnClickListener {
 
             auth.signOut()
 
