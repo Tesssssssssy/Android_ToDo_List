@@ -6,6 +6,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.tessssssssy.oop_todo_list.adapter.TodoAdapter
 import com.tessssssssy.oop_todo_list.adapter.ViewPagerAdapter
 import com.tessssssssy.oop_todo_list.databinding.ActivityMainBinding
+import com.tessssssssy.oop_todo_list.fragment.GraphFragment
 
 class MainActivity : AppCompatActivity() {
 
