@@ -74,6 +74,7 @@ class MyPageFragment : Fragment() {
         setting.setOnClickListener {
 
             auth.signOut()
+            Toast.makeText(activity, "로그아웃 성공!", Toast.LENGTH_SHORT).show()
 
             activity?.let {
                 val intent = Intent(context, IntroActivity::class.java)
