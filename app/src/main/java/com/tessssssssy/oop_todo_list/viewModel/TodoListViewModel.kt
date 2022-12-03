@@ -42,6 +42,9 @@ class TodoListViewModel: ViewModel() {
     fun calScore(): Int {
         var sum = 0
         var total = 0
+        if(todoList.value!!.size == 0) {
+            return 0
+        }
         for (i in 0.._todoList.value!!.size - 1) {
 
             sum += _todoList.value?.get(i)?.priority?.replace("\\s+".toRegex(),"")?.toInt()!! * _todoList.value?.get(i)?.completion?.replace("\\s+".toRegex(),"")?.toInt()!!

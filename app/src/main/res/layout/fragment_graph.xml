@@ -55,17 +55,6 @@
         android:text="점수 계산"
         app:backgroundTint="@color/bg_color" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/baemin"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:textColor="@color/bg_color"
-        android:textSize="25sp"
-        android:text="아래 그래프 클릭 시\n새로운 그래프를 확인할 수 있습니다!"
-        />
-
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/lineChart"
         android:layout_width="match_parent"
@@ -74,6 +63,12 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_calScore"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="11dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="그래프 초기화" />
 
 
 </LinearLayout>
