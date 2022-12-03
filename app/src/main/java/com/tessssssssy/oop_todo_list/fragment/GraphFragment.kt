@@ -58,8 +58,10 @@ class GraphFragment : Fragment() {
                 setLineChartData()
                 Toast.makeText(requireContext(), "계산 완료! 아래 그래프에서 점수변화를 확인할 수 있습니다!", Toast.LENGTH_LONG).show()
             }
-
         })
+        binding.btnClear.setOnClickListener {
+            deleteContent()
+        }
     }
 
     // 이 함수로 라인 차트 구현
@@ -97,14 +99,11 @@ class GraphFragment : Fragment() {
 
         })
 
-
-
-
-
-
     }
 
-
-
+    private fun deleteContent() {
+        FirebaseRef.userInfoRef.child(uid).child("score").removeValue()
+        setLineChartData()
+    }
 
 }
