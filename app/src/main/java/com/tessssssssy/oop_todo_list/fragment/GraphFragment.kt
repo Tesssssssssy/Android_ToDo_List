@@ -91,11 +91,13 @@ class GraphFragment : Fragment() {
                 // lineChart에 data를 넣어줌
                 lineChart.data = data
 
+                // 차트 UI 세팅
                 lineChart.animateXY(2000, 2000)
                 linedataset.lineWidth = 5f
                 linedataset.valueTextSize = 15f
                 linedataset.color = resources.getColor(R.color.chart_color2)
-
+                linedataset.setCircleColor(R.color.chart_color2)
+                lineChart.setScaleEnabled(false)
             }
 
             override fun onCancelled(error: DatabaseError) {
