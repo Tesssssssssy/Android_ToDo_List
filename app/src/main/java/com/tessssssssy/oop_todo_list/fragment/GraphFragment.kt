@@ -19,6 +19,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
+import com.tessssssssy.oop_todo_list.R
 import com.tessssssssy.oop_todo_list.databinding.FragmentGraphBinding
 import com.tessssssssy.oop_todo_list.utils.FirebaseRef
 import com.tessssssssy.oop_todo_list.viewModel.TodoListViewModel
@@ -91,6 +92,10 @@ class GraphFragment : Fragment() {
                 lineChart.data = data
 
                 lineChart.animateXY(2000, 2000)
+                linedataset.lineWidth = 5f
+                linedataset.valueTextSize = 15f
+                linedataset.color = resources.getColor(R.color.chart_color2)
+
             }
 
             override fun onCancelled(error: DatabaseError) {
