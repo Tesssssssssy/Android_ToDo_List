@@ -10,6 +10,7 @@ import com.tessssssssy.oop_todo_list.repository.TodoRepository
 class TodoListViewModel: ViewModel() {
     private var _todoList = MutableLiveData<ArrayList<Todo>>(arrayListOf())
     val todoList: LiveData<ArrayList<Todo>> get() = _todoList
+
     private var _scr = MutableLiveData<ArrayList<Int>>(arrayListOf())
     val scr: LiveData<ArrayList<Int>> get() = _scr
 

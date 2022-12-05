@@ -24,22 +24,14 @@ class TodoRepository {
                 Log.d("snapshot", FirebaseRef.userInfoRef.child(uid).child("ToDo_List").toString())
                 // onDataChange시에 todoList의 value를 다시 비워줍니다.
                 todoList.value?.clear()
-                // 이 settingList에 todo들을 담아 todoList의 value로 전달하려고 합니다.
-                val settingList = arrayListOf<Todo>()
 
                 for(data in snapshot.children) {
-                    settingList.add(extractData(data)) // 직접 snapshot에서 받아온 데이터를 parsing해서 Todo를 담는 arrayList에 담습니다.
+                    Log.d("data", data.toString())
+                    todoList.value!!.add(extractData(data)) // 직접 snapshot에서 받아온 데이터를 parsing해서 Todo를 담는 arrayList에 담습니다.
                 }
-                Log.d("size", settingList.size.toString())
 
-                // settingList에 있는 Todo들을 todoList에 추가합니다.
-                for(data in settingList){
-                    todoList.value!!.add(data)
-                }
                 val result = todoList.value
-
-                // todoList의 value를 보여주기 위한 단계
-                todoList.value= todoList.value
+                todoList.value= result
 
             }
 
@@ -53,7 +45,6 @@ class TodoRepository {
 
     fun postTodo(todo: Todo) {
         val list = mutableListOf(todo.todo, todo.priority, todo.completion)
-//        todoRef.child(todo.todo).setValue(list)
         FirebaseRef.userInfoRef.child(uid).child("ToDo_List").child(todo.todo.trim()).setValue(list)
     }
 
@@ -101,7 +92,7 @@ class TodoRepository {
             else{
                 string += char
 //                Log.d("stringBuilder", stringBuilder.toString())
-                Log.d("char", char.toString())
+//                Log.d("char", char.toString())
             }
 
         }
