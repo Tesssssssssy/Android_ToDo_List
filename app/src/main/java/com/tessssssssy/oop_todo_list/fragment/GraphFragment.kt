@@ -28,7 +28,7 @@ import kotlinx.android.synthetic.main.fragment_graph.*
 class GraphFragment : Fragment() {
 
     val viewModel: TodoListViewModel by activityViewModels()
-    lateinit var binding: FragmentGraphBinding
+    var binding: FragmentGraphBinding? = null
     var auth = Firebase.auth
     val user = auth.currentUser
     var uid = user?.uid.toString()
@@ -45,7 +45,7 @@ class GraphFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentGraphBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,14 +53,14 @@ class GraphFragment : Fragment() {
 
         viewModel.scr.observe(viewLifecycleOwner, Observer {
             // 작성하기 버튼 클릭
-            binding.btnCalScore.setOnClickListener{
-                binding.txtScore.text = viewModel.calScore().toString()
-                FirebaseRef.userInfoRef.child(uid).child("score").push().setValue(binding.txtScore.text.toString())
+            binding?.btnCalScore?.setOnClickListener{
+                binding?.txtScore?.text = viewModel.calScore().toString()
+                FirebaseRef.userInfoRef.child(uid).child("score").push().setValue(binding?.txtScore?.text.toString())
                 setLineChartData()
                 Toast.makeText(requireContext(), "계산 완료! 아래 그래프에서 점수변화를 확인할 수 있습니다!", Toast.LENGTH_LONG).show()
             }
         })
-        binding.btnClear.setOnClickListener {
+        binding?.btnClear?.setOnClickListener {
             deleteContent()
         }
     }
@@ -111,6 +111,11 @@ class GraphFragment : Fragment() {
     private fun deleteContent() {
         FirebaseRef.userInfoRef.child(uid).child("score").removeValue()
         setLineChartData()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 
 }

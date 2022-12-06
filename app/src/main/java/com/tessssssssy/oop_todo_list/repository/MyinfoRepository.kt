@@ -47,8 +47,4 @@ class MyinfoRepository {
         })
     }
 
-    fun postMyinfo(newValue: String) {
-        FirebaseRef.userInfoRef.child(uid).child("nickname").setValue(newValue)
-    }
-
 }

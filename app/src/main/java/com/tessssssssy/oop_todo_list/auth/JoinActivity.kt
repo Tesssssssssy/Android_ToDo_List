@@ -45,7 +45,7 @@ class JoinActivity : AppCompatActivity() {
             val emailCheck = email.text.toString()
 
             if (emailCheck.isEmpty()) {
-                Toast.makeText(this, "비어 있음!", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "이메일이 비어 있습니다!", Toast.LENGTH_LONG).show()
             } else if (pwd.text.toString() != pwdcheck.text.toString()) {
                 Toast.makeText(this, "비밀번호가 일치하지 않습니다!", Toast.LENGTH_LONG).show()
             }
@@ -64,7 +64,7 @@ class JoinActivity : AppCompatActivity() {
 //                        유저의 uid값 저장.
                         uid = user?.uid.toString()
 
-//                        구조화하기 위해 유저 데이터모델을 따로 만듦.
+//                        구조화하기 위해 유저 데이터모델 클래스를 따로 만듦.
                         val userModel = UserDataModel(
                             uid,
                             emailstring,

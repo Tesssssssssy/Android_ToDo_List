@@ -31,8 +31,6 @@ class LoginActivity : AppCompatActivity() {
             val email = binding.emailArea
             val pwd = binding.passwordArea
 
-            val listfragment = ListFragment()
-
             auth.signInWithEmailAndPassword(email.text.toString(), pwd.text.toString())
                 .addOnCompleteListener(this) { task ->
                     if(task.isSuccessful) {

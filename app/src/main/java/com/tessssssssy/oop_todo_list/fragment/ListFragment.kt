@@ -52,7 +52,7 @@ class ListFragment : Fragment(), onBtnClick {
 
         viewModel.todoList.observe(viewLifecycleOwner, Observer {
             // 작성하기 버튼 클릭
-            binding.btnWrite.setOnClickListener{
+            binding?.btnWrite?.setOnClickListener{
                 // dialog_edit.xml과 bind
                 val bindingDialog = DialogEditBinding.inflate(LayoutInflater.from(binding.root.context), binding.root, false)
 
@@ -91,6 +91,7 @@ class ListFragment : Fragment(), onBtnClick {
     ) {
         viewModel.updateTodo(todo, newTodo, newCompletion, newPriorty)
     }
+
 
 
 }

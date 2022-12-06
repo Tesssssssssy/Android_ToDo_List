@@ -26,7 +26,7 @@ class MyPageFragment : Fragment() {
     private val TAG = "MyPageFragment"
 
     val viewModel: MyinfoViewModel by activityViewModels()
-    lateinit var binding: FragmentMyPageBinding
+    var binding: FragmentMyPageBinding? = null
 
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
@@ -39,9 +39,7 @@ class MyPageFragment : Fragment() {
         super.onCreate(savedInstanceState)
         database = Firebase.database.reference
 
-
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,13 +49,11 @@ class MyPageFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentMyPageBinding.inflate(inflater)
 
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
 
         viewModel.nickname.observe(viewLifecycleOwner) {
             binding?.nameArea?.text = viewModel.nickname.value
@@ -66,12 +62,10 @@ class MyPageFragment : Fragment() {
             binding?.emailArea?.text = viewModel.email.value
         }
 
-
-
         auth = Firebase.auth
 
-        val setting = binding.logoutBtn
-        setting.setOnClickListener {
+        val setting = binding?.logoutBtn
+        setting?.setOnClickListener {
 
             auth.signOut()
             Toast.makeText(activity, "로그아웃 성공!", Toast.LENGTH_SHORT).show()
@@ -81,6 +75,11 @@ class MyPageFragment : Fragment() {
                 startActivity(intent)
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 
 
