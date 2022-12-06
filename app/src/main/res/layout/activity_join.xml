@@ -73,6 +73,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/pwdArea"
+                    android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="password"/>
@@ -89,6 +90,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/pwdCheckArea"
+                    android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="password check" />

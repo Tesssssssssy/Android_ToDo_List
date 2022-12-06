@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/baemin"
             android:text="이름"
-            android:textSize="34sp" />
+            android:textSize="30sp" />
 
 
     </LinearLayout>
@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/baemin"
             android:text="email"
-            android:textSize="34sp" />
+            android:textSize="27sp" />
 
     </LinearLayout>
 
