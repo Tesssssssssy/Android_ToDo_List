@@ -1,4 +1,4 @@
-# ToDo_List
+# ToDo_List - Andoid Application for making TO-DO LIST
 object_oriented_programming_TODO_LIST
 
 
